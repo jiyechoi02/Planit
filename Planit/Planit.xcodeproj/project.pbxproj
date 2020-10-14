@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		141D5DA6253682E4001BC749 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA4253682E4001BC749 /* Main.storyboard */; };
 		141D5DA8253682E9001BC749 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA7253682E9001BC749 /* Assets.xcassets */; };
 		141D5DAB253682E9001BC749 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA9253682E9001BC749 /* LaunchScreen.storyboard */; };
+		873EB61925369EE800327BDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61825369EE800327BDC /* CalendarViewController.swift */; };
+		B61F01E8A21970B8470F252E /* Pods_Planit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC99677DA06816BED75C167 /* Pods_Planit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		141D5DA7253682E9001BC749 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		141D5DAA253682E9001BC749 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		141D5DAC253682E9001BC749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BC99677DA06816BED75C167 /* Pods_Planit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Planit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B014B7C46247D6F0F62CFB7 /* Pods-Planit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.release.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.release.xcconfig"; sourceTree = "<group>"; };
+		873EB61825369EE800327BDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		C7F0C13FE3BEF96B131F4EDE /* Pods-Planit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.debug.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61F01E8A21970B8470F252E /* Pods_Planit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				141D5D9D253682E4001BC749 /* Planit */,
 				141D5D9C253682E4001BC749 /* Products */,
+				EF4FA1D7C70FD1F3F70FE6CA /* Pods */,
+				618CD4A5F801CB58BF5D1A21 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,11 +69,29 @@
 				141D5DA0253682E4001BC749 /* SceneDelegate.swift */,
 				141D5DA2253682E4001BC749 /* ViewController.swift */,
 				141D5DA4253682E4001BC749 /* Main.storyboard */,
+				873EB61825369EE800327BDC /* CalendarViewController.swift */,
 				141D5DA7253682E9001BC749 /* Assets.xcassets */,
 				141D5DA9253682E9001BC749 /* LaunchScreen.storyboard */,
 				141D5DAC253682E9001BC749 /* Info.plist */,
 			);
 			path = Planit;
+			sourceTree = "<group>";
+		};
+		618CD4A5F801CB58BF5D1A21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BC99677DA06816BED75C167 /* Pods_Planit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF4FA1D7C70FD1F3F70FE6CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7F0C13FE3BEF96B131F4EDE /* Pods-Planit.debug.xcconfig */,
+				6B014B7C46247D6F0F62CFB7 /* Pods-Planit.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 141D5DAF253682E9001BC749 /* Build configuration list for PBXNativeTarget "Planit" */;
 			buildPhases = (
+				690B0D79454257C46454C5C7 /* [CP] Check Pods Manifest.lock */,
 				141D5D97253682E4001BC749 /* Sources */,
 				141D5D98253682E4001BC749 /* Frameworks */,
 				141D5D99253682E4001BC749 /* Resources */,
+				8B75EB3634CF76AF8EFF71D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,11 +162,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		690B0D79454257C46454C5C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Planit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B75EB3634CF76AF8EFF71D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Planit/Pods-Planit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Planit/Pods-Planit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Planit/Pods-Planit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		141D5D97253682E4001BC749 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				873EB61925369EE800327BDC /* CalendarViewController.swift in Sources */,
 				141D5DA3253682E4001BC749 /* ViewController.swift in Sources */,
 				141D5D9F253682E4001BC749 /* AppDelegate.swift in Sources */,
 				141D5DA1253682E4001BC749 /* SceneDelegate.swift in Sources */,
@@ -282,6 +354,7 @@
 		};
 		141D5DB0253682E9001BC749 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7F0C13FE3BEF96B131F4EDE /* Pods-Planit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +373,7 @@
 		};
 		141D5DB1253682E9001BC749 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B014B7C46247D6F0F62CFB7 /* Pods-Planit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
