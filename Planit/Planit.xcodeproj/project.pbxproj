@@ -13,6 +13,10 @@
 		141D5DA6253682E4001BC749 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA4253682E4001BC749 /* Main.storyboard */; };
 		141D5DA8253682E9001BC749 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA7253682E9001BC749 /* Assets.xcassets */; };
 		141D5DAB253682E9001BC749 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA9253682E9001BC749 /* LaunchScreen.storyboard */; };
+		872D3D56254E77BB00B55533 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D55254E77BB00B55533 /* Task.swift */; };
+		872D3D58254E77EA00B55533 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D57254E77EA00B55533 /* DBManager.swift */; };
+		872D3D5B254E788B00B55533 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 872D3D5A254E788B00B55533 /* libsqlite3.tbd */; };
+		872D3D5D254E7B5100B55533 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 872D3D5C254E7B5100B55533 /* db.sqlite */; };
 		873EB61925369EE800327BDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61825369EE800327BDC /* CalendarViewController.swift */; };
 		873EB61B2536B90900327BDC /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61A2536B90900327BDC /* TaskViewController.swift */; };
 		B61F01E8A21970B8470F252E /* Pods_Planit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC99677DA06816BED75C167 /* Pods_Planit.framework */; };
@@ -29,6 +33,11 @@
 		141D5DAC253682E9001BC749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BC99677DA06816BED75C167 /* Pods_Planit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Planit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B014B7C46247D6F0F62CFB7 /* Pods-Planit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.release.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.release.xcconfig"; sourceTree = "<group>"; };
+		872D3D55254E77BB00B55533 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		872D3D57254E77EA00B55533 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		872D3D59254E785700B55533 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		872D3D5A254E788B00B55533 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		872D3D5C254E7B5100B55533 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		873EB61825369EE800327BDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		873EB61A2536B90900327BDC /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		C7F0C13FE3BEF96B131F4EDE /* Pods-Planit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.debug.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -39,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				872D3D5B254E788B00B55533 /* libsqlite3.tbd in Frameworks */,
 				B61F01E8A21970B8470F252E /* Pods_Planit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +86,10 @@
 				141D5DA7253682E9001BC749 /* Assets.xcassets */,
 				141D5DA9253682E9001BC749 /* LaunchScreen.storyboard */,
 				141D5DAC253682E9001BC749 /* Info.plist */,
+				872D3D55254E77BB00B55533 /* Task.swift */,
+				872D3D57254E77EA00B55533 /* DBManager.swift */,
+				872D3D59254E785700B55533 /* Bridging-Header.h */,
+				872D3D5C254E7B5100B55533 /* db.sqlite */,
 			);
 			path = Planit;
 			sourceTree = "<group>";
@@ -83,6 +97,7 @@
 		618CD4A5F801CB58BF5D1A21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				872D3D5A254E788B00B55533 /* libsqlite3.tbd */,
 				5BC99677DA06816BED75C167 /* Pods_Planit.framework */,
 			);
 			name = Frameworks;
@@ -160,6 +175,7 @@
 				141D5DAB253682E9001BC749 /* LaunchScreen.storyboard in Resources */,
 				141D5DA8253682E9001BC749 /* Assets.xcassets in Resources */,
 				141D5DA6253682E4001BC749 /* Main.storyboard in Resources */,
+				872D3D5D254E7B5100B55533 /* db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +232,9 @@
 				141D5DA3253682E4001BC749 /* ViewController.swift in Sources */,
 				873EB61B2536B90900327BDC /* TaskViewController.swift in Sources */,
 				141D5D9F253682E4001BC749 /* AppDelegate.swift in Sources */,
+				872D3D56254E77BB00B55533 /* Task.swift in Sources */,
 				141D5DA1253682E4001BC749 /* SceneDelegate.swift in Sources */,
+				872D3D58254E77EA00B55533 /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +388,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umass.Planit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/jiyechoi/Desktop/planit/CS491Planit/Planit/Planit/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -389,6 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umass.Planit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/jiyechoi/Desktop/planit/CS491Planit/Planit/Planit/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
