@@ -13,19 +13,19 @@ class Task
     var id:Int
     var title:String
     var deadline:String
-    var duration:Int
+    var workload:Int
     var left_days = 0
     var start_date:Date
     var amount_of_a_day:Float = 0.0
     
-    init(id: Int, title: String, deadline: String, duration:Int){
+    init(id: Int, title: String, deadline: String, workload:Int){
 
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM-dd-YYYY"
+        formatter.dateFormat = "MM/dd/YY HH:mm"
         self.id = id
         self.title = title
         self.deadline = deadline
-        self.duration = duration
-        self.start_date = formatter.date(from:"10-01-2020")!
+        self.workload = workload
+        self.start_date = formatter.date(from:"10/01/20 12:42")!
     }
 }

@@ -16,7 +16,8 @@
 		872D3D56254E77BB00B55533 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D55254E77BB00B55533 /* Task.swift */; };
 		872D3D58254E77EA00B55533 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D57254E77EA00B55533 /* DBManager.swift */; };
 		872D3D5B254E788B00B55533 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 872D3D5A254E788B00B55533 /* libsqlite3.tbd */; };
-		872D3D5D254E7B5100B55533 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 872D3D5C254E7B5100B55533 /* db.sqlite */; };
+		872D3D5F254F5EE000B55533 /* ScheduleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D5E254F5EE000B55533 /* ScheduleGenerator.swift */; };
+		872D3D61254FA38100B55533 /* planit.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 872D3D60254FA38100B55533 /* planit.sqlite */; };
 		873EB61925369EE800327BDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61825369EE800327BDC /* CalendarViewController.swift */; };
 		873EB61B2536B90900327BDC /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61A2536B90900327BDC /* TaskViewController.swift */; };
 		B61F01E8A21970B8470F252E /* Pods_Planit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC99677DA06816BED75C167 /* Pods_Planit.framework */; };
@@ -37,7 +38,8 @@
 		872D3D57254E77EA00B55533 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		872D3D59254E785700B55533 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		872D3D5A254E788B00B55533 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		872D3D5C254E7B5100B55533 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
+		872D3D5E254F5EE000B55533 /* ScheduleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGenerator.swift; sourceTree = "<group>"; };
+		872D3D60254FA38100B55533 /* planit.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = planit.sqlite; sourceTree = "<group>"; };
 		873EB61825369EE800327BDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		873EB61A2536B90900327BDC /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		C7F0C13FE3BEF96B131F4EDE /* Pods-Planit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.debug.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,7 +91,8 @@
 				872D3D55254E77BB00B55533 /* Task.swift */,
 				872D3D57254E77EA00B55533 /* DBManager.swift */,
 				872D3D59254E785700B55533 /* Bridging-Header.h */,
-				872D3D5C254E7B5100B55533 /* db.sqlite */,
+				872D3D60254FA38100B55533 /* planit.sqlite */,
+				872D3D5E254F5EE000B55533 /* ScheduleGenerator.swift */,
 			);
 			path = Planit;
 			sourceTree = "<group>";
@@ -175,7 +178,7 @@
 				141D5DAB253682E9001BC749 /* LaunchScreen.storyboard in Resources */,
 				141D5DA8253682E9001BC749 /* Assets.xcassets in Resources */,
 				141D5DA6253682E4001BC749 /* Main.storyboard in Resources */,
-				872D3D5D254E7B5100B55533 /* db.sqlite in Resources */,
+				872D3D61254FA38100B55533 /* planit.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +237,7 @@
 				141D5D9F253682E4001BC749 /* AppDelegate.swift in Sources */,
 				872D3D56254E77BB00B55533 /* Task.swift in Sources */,
 				141D5DA1253682E4001BC749 /* SceneDelegate.swift in Sources */,
+				872D3D5F254F5EE000B55533 /* ScheduleGenerator.swift in Sources */,
 				872D3D58254E77EA00B55533 /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

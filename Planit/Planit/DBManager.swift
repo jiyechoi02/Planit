@@ -40,10 +40,10 @@ class DBManager
     func getPath() -> String {
         let fileManager = FileManager()
         let pathUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let dbPath = pathUrl.appendingPathComponent("db.sqlite").path
+        let dbPath = pathUrl.appendingPathComponent("planit.sqlite").path
 
         if fileManager.fileExists(atPath: dbPath) == false {
-            let dbSource = Bundle.main.path(forResource: "db", ofType: "sqlite")
+            let dbSource = Bundle.main.path(forResource: "planit", ofType: "sqlite")
             // copyItem takse both urls
             try! fileManager.copyItem(atPath: dbSource!, toPath: dbPath)
         }
@@ -55,7 +55,7 @@ class DBManager
         var stmt: OpaquePointer? = nil // compiled sql
         
 //        let dbPath = "/Users/jiyechoi/Desktop/db.sqlite"
-        let sql = "CREATE TABLE IF NOT EXISTS task (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, deadline TEXT, duration INTEGER)"
+        let sql = "CREATE TABLE IF NOT EXISTS task (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, deadline TEXT, workload INTEGER, startDate TEXT)"
         
         if sqlite3_prepare(db, sql, -1, &stmt, nil) == SQLITE_OK {
             if sqlite3_step(stmt) == SQLITE_DONE {
@@ -69,29 +69,37 @@ class DBManager
         sqlite3_finalize(stmt)
     }
     
-    func insertData(title:String, deadline:String, duration:Int)
+    func insertData(title:String, deadline:String, workload:Int) -> Int
     {
-        let sql = "INSERT INTO task (title, deadline, duration) VALUES (?,?,?)"
+        let sql = "INSERT INTO task (title, deadline, workload) VALUES (?,?,?)"
         var stmt: OpaquePointer? = nil // compiled sql
+        var flag: Int = 0
         if sqlite3_prepare(db, sql, -1, &stmt, nil) == SQLITE_OK
         {
             sqlite3_bind_text(stmt, 1, (title as NSString).utf8String, -1, nil)
             sqlite3_bind_text(stmt, 2, (deadline as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(stmt, 3, Int32(duration))
+            sqlite3_bind_int(stmt, 3, Int32(workload))
             
             if sqlite3_step(stmt) == SQLITE_DONE
             {
                 print("SUCCESS : inserting data")
+                flag = 1
+
             } else
             {
                 print("ERROR : inserting data")
+                flag = -1
             }
         } else
         {
             print("ERROR : preparing INSERT statsment")
             NSLog("Database Error Message : %s", sqlite3_errmsg(db));
+            flag = -1
+
         }
         sqlite3_finalize(stmt)
+    
+        return flag
     }
     
     func readData() -> [Task] {
@@ -105,9 +113,9 @@ class DBManager
                 let id = sqlite3_column_int(stmt, 0)
                 let title =  String(describing: String(cString: sqlite3_column_text(stmt, 1)))
                 let deadline = String(describing: String(cString: sqlite3_column_text(stmt, 2)))
-                let duration = sqlite3_column_int(stmt, 3)
-                task_list.append(Task(id: Int(id), title: title, deadline: deadline, duration: Int(duration)))
-                print("\(id) : \(title) : \(deadline) : \(duration)")
+                let workload = sqlite3_column_int(stmt, 3)
+                task_list.append(Task(id: Int(id), title: title, deadline: deadline, workload: Int(workload)))
+                print("\(id) : \(title) : \(deadline) : \(workload)")
             }
         } else
         {

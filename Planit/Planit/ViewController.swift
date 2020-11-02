@@ -14,6 +14,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBOutlet weak var todayTaskTableView: UITableView!
     @IBOutlet weak var taskTable: UITableView! // task table view
     let cell_identifier = "cellID" // identifier for each cell
     var task_list:[Task] = [] // to store data from the database
@@ -22,7 +23,12 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     
     var dataArr:[String]? = []
     var text_selectedCell:String? = ""
-    var selectedTask:Task? = nil
+    //var selectedTask:Task? = nil
+    var sorted_task_list:[Task]=[]
+    let sg:ScheduleGenerator = ScheduleGenerator()
+    
+    var today_todo_list:[Task] = [Task(id: 1, title: "hw2", deadline: "11/14/20 11:00", workload: 5)]
+    
     // setup
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +36,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         taskTable.dataSource = self
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: cell_identifier)
         self.task_list = db.readData() // read data from the DB and store them in the list
+        sorted_task_list = sg.generate(task_list: task_list)
         prepareRefresh() // For refresh the table view
 
     }
@@ -38,15 +45,6 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         performSegue(withIdentifier: "firstLink", sender: self)
     }
     
-    @IBAction func deleteDataEvent(_ sender: Any) {
-        if text_selectedCell!.isEmpty || selectedTask == nil{
-            print("it's empty")
-        }else{
-            db.deleteById(id: selectedTask!.id)
-            task_list = db.readData()
-            taskTable.reloadData()
-        }
-    }
     // initialize refresh controller
     func prepareRefresh() {
         let refreshController = UIRefreshControl()
@@ -63,7 +61,22 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     @objc func updateTable(refreshController : UIRefreshControl){
         refreshController.endRefreshing()
         task_list = db.readData()
+        sorted_task_list = sg.generate(task_list: task_list)
         taskTable.reloadData()
+    }
+    
+    @IBAction func deleteDataEvent(_ sender: Any) {
+        if let selectedCells = taskTable.indexPathsForSelectedRows{
+            for indexPath in selectedCells{
+                let selectedTask = sorted_task_list[indexPath.row]
+                db.deleteById(id: selectedTask.id)
+                task_list = db.readData()
+                sorted_task_list = sg.generate(task_list: task_list)
+                taskTable.reloadData()
+            }
+        }else {
+            print("it's empty")
+        }
     }
     
     /*----------Handling TableView ---------*/
@@ -76,21 +89,28 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         // reuns whenever the table view needs to put data in its rows
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cell_identifier)!
         //let id = task_list[indexPath.row].id
-        let title = task_list[indexPath.row].title
-        let deadline = task_list[indexPath.row].deadline
-        let duration = task_list[indexPath.row].duration
+        let title = sorted_task_list[indexPath.row].title
+        let deadline = sorted_task_list[indexPath.row].deadline
+        let workload = sorted_task_list[indexPath.row].workload
         
-        let string = String(indexPath.row) + " " + title + " " + deadline + " " + String(duration)
+        let string = String(indexPath.row) + " " + title + " " + deadline + " " + String(workload)
         cell.textLabel?.text =  string
         
         return cell
     }
     //for seleced cell
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = self.taskTable.cellForRow(at: indexPath)
-        text_selectedCell = selectedCell?.textLabel?.text
-        selectedTask = task_list[indexPath.row]
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let selectedCell = self.taskTable.cellForRow(at: indexPath)
+//        text_selectedCell = selectedCell?.textLabel?.text
+//        selectedTask = sorted_task_list[indexPath.row]
+//    }
     /*------------------------------------*/
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is CalendarViewController {
+            let vc = segue.destination as? CalendarViewController
+            vc?.task_list = sorted_task_list
+        }
+    }
 }
 

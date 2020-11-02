@@ -11,18 +11,15 @@ import UIKit
 class TaskViewController: UIViewController {
 
     @IBOutlet weak var addButton: UIButton!
-    var input_title:String = ""
     let dateFormatter: DateFormatter = DateFormatter()
     
+    @IBOutlet weak var workloadSlider: UISlider!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var textfield_title: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-    
-        
+        dateFormatter.dateFormat = "MM/dd/YY HH:mm"
     }
 
     @IBAction func add_button_event(_ sender: Any) {
@@ -36,8 +33,13 @@ class TaskViewController: UIViewController {
             
         }else{
             let selectedDate: String = dateFormatter.string(from: datePicker.date)
-            input_title = textfield_title.text!
-            db.insertData(title: input_title, deadline: selectedDate, duration: 0)
+            let inputTitle = textfield_title.text!
+            let workload = Int(workloadSlider.value)
+            if db.insertData(title: inputTitle, deadline: selectedDate, workload: workload) == 1 {
+                textfield_title.text = ""
+            }else {
+                print("ERROR")
+            }
         }
     }
     

@@ -14,15 +14,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegate,FSCalendarDat
     @IBOutlet var calendar: FSCalendar!
     let formatter = DateFormatter()
     
+    var task_list:[Task] = []
     @IBOutlet weak var eventTable: UITableView!
     let eventArray = ["2020-10-01 hw2","2020-10-14 Exam", "2020-10-28 D-day!"]
     let cellID = "cellID"
+    
+    @IBOutlet weak var textfield_event_title: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar.delegate = self
         calendar.dataSource = self
-        calendar.allowsMultipleSelection = true
+        calendar.allowsMultipleSelection = false
         calendar.swipeToChooseGesture.isEnabled = true
         calendar.appearance.todayColor = UIColor.black
         calendar.appearance.todaySelectionColor = UIColor.red
@@ -30,15 +33,17 @@ class CalendarViewController: UIViewController, FSCalendarDelegate,FSCalendarDat
         calendar.appearance.headerTitleColor = UIColor.black
         calendar.appearance.titleSelectionColor = UIColor.black
         calendar.appearance.subtitleSelectionColor = UIColor.red
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "MM/dd/yy"
         
         eventTable.delegate = self
         eventTable.dataSource = self
+ 
     }
     
     // -------- Calendar Callback Functions -------------------------------
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(formatter.string(from: date) + " selected")
+        textfield_event_title.text = formatter.string(from: date) + " Events"
+//        print(formatter.string(from: date) + " selected")
     }
     
     public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -49,11 +54,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate,FSCalendarDat
         switch formatter.string(from: date) {
         case formatter.string(from : Date()):
             return "Today"
-        case "2020-10-01":
+        case "10/01/20":
             return "hw2"
-        case "2020-10-14":
+        case "11/03/20":
             return "Exam"
-        case "2020-10-28":
+        case "11/15/20":
             return "D-day"
         default:
             return nil
