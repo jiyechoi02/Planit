@@ -11,11 +11,12 @@ import UIKit
 /* This is the main view controller */
 class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     
+    // UIs
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    
     @IBOutlet weak var todayTaskTableView: UITableView!
     @IBOutlet weak var taskTable: UITableView! // task table view
+    
     let cell_identifier = "cellID" // identifier for each cell
     var task_list:[Task] = [] // to store data from the database
     
@@ -23,7 +24,6 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     
     var dataArr:[String]? = []
     var text_selectedCell:String? = ""
-    //var selectedTask:Task? = nil
     var sorted_task_list:[Task]=[]
     let sg:ScheduleGenerator = ScheduleGenerator()
     
@@ -98,6 +98,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
         return cell
     }
+    
     //for seleced cell
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let selectedCell = self.taskTable.cellForRow(at: indexPath)

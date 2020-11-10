@@ -81,10 +81,10 @@
 			children = (
 				141D5D9E253682E4001BC749 /* AppDelegate.swift */,
 				141D5DA0253682E4001BC749 /* SceneDelegate.swift */,
-				141D5DA2253682E4001BC749 /* ViewController.swift */,
-				141D5DA4253682E4001BC749 /* Main.storyboard */,
 				873EB61A2536B90900327BDC /* TaskViewController.swift */,
+				141D5DA2253682E4001BC749 /* ViewController.swift */,
 				873EB61825369EE800327BDC /* CalendarViewController.swift */,
+				141D5DA4253682E4001BC749 /* Main.storyboard */,
 				141D5DA7253682E9001BC749 /* Assets.xcassets */,
 				141D5DA9253682E9001BC749 /* LaunchScreen.storyboard */,
 				141D5DAC253682E9001BC749 /* Info.plist */,

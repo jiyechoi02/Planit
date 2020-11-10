@@ -26,6 +26,6 @@ class Task
         self.title = title
         self.deadline = deadline
         self.workload = workload
-        self.start_date = formatter.date(from:"10/01/20 12:42")!
+        self.start_date = Date()
     }
 }
