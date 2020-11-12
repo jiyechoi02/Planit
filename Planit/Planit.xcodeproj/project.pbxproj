@@ -13,6 +13,7 @@
 		141D5DA6253682E4001BC749 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA4253682E4001BC749 /* Main.storyboard */; };
 		141D5DA8253682E9001BC749 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA7253682E9001BC749 /* Assets.xcassets */; };
 		141D5DAB253682E9001BC749 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141D5DA9253682E9001BC749 /* LaunchScreen.storyboard */; };
+		872487F9255C9A1000635206 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872487F8255C9A1000635206 /* DateCell.swift */; };
 		872D3D56254E77BB00B55533 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D55254E77BB00B55533 /* Task.swift */; };
 		872D3D58254E77EA00B55533 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872D3D57254E77EA00B55533 /* DBManager.swift */; };
 		872D3D5B254E788B00B55533 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 872D3D5A254E788B00B55533 /* libsqlite3.tbd */; };
@@ -34,6 +35,7 @@
 		141D5DAC253682E9001BC749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BC99677DA06816BED75C167 /* Pods_Planit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Planit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B014B7C46247D6F0F62CFB7 /* Pods-Planit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.release.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.release.xcconfig"; sourceTree = "<group>"; };
+		872487F8255C9A1000635206 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		872D3D55254E77BB00B55533 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		872D3D57254E77EA00B55533 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		872D3D59254E785700B55533 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				872D3D59254E785700B55533 /* Bridging-Header.h */,
 				872D3D60254FA38100B55533 /* planit.sqlite */,
 				872D3D5E254F5EE000B55533 /* ScheduleGenerator.swift */,
+				872487F8255C9A1000635206 /* DateCell.swift */,
 			);
 			path = Planit;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				141D5DA3253682E4001BC749 /* ViewController.swift in Sources */,
 				873EB61B2536B90900327BDC /* TaskViewController.swift in Sources */,
 				141D5D9F253682E4001BC749 /* AppDelegate.swift in Sources */,
+				872487F9255C9A1000635206 /* DateCell.swift in Sources */,
 				872D3D56254E77BB00B55533 /* Task.swift in Sources */,
 				141D5DA1253682E4001BC749 /* SceneDelegate.swift in Sources */,
 				872D3D5F254F5EE000B55533 /* ScheduleGenerator.swift in Sources */,

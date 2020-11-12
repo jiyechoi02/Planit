@@ -108,10 +108,10 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     /*------------------------------------*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is CalendarViewController {
-            let vc = segue.destination as? CalendarViewController
-            vc?.task_list = sorted_task_list
-        }
+//        if segue.destination is CalendarViewController {
+//            let vc = segue.destination as? CalendarViewController
+//            vc?.task_list = sorted_task_list
+//        }
     }
 }
 

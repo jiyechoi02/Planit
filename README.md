@@ -48,3 +48,29 @@ workload per day. Work back from due date to find start date. Need to allow user
 dates. How to handle overloads? Need to give users options. May want to give users options
 to select how early or late they like to work toward a deadline, and also to warn users when a
 new task needs more than the maximum work that can be allocated before the deadline.
+
+
+# Working on the Calendar
+------------------------------------------------------
+To install JTAppleCalendar 
+change the podfile with 
+
+
+target 'Planit' do
+  use_frameworks!
+
+  pod 'JTAppleCalendar', '~> 7.1'
+
+end
+
+then command "pod install"
+---------------------------------------
+
+What I still need to do 
+
+still working on the calendar UI ofc!
+need to fix changing year, month headers when it's scrolled to other month, year
+does not work selecting dates
+implement loading data from server 
+not sure how to display 'bar' on events 
+

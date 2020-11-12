@@ -1,16 +1,16 @@
 PODS:
-  - FSCalendar (2.8.1)
+  - JTAppleCalendar (7.1.8)
 
 DEPENDENCIES:
-  - FSCalendar
+  - JTAppleCalendar (~> 7.1)
 
 SPEC REPOS:
   trunk:
-    - FSCalendar
+    - JTAppleCalendar
 
 SPEC CHECKSUMS:
-  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
 
-PODFILE CHECKSUM: 2ccea195a5efca2686beef600790223968f777bb
+PODFILE CHECKSUM: 0a24734182bbacc570b291297376c6a22fd8a04c
 
 COCOAPODS: 1.9.3

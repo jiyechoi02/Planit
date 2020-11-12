@@ -7,79 +7,88 @@
 //
 
 import UIKit
-import FSCalendar
+import JTAppleCalendar
 
-class CalendarViewController: UIViewController, FSCalendarDelegate,FSCalendarDataSource, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var calendar: FSCalendar!
+class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     let formatter = DateFormatter()
+    let today = Date()
     
-    var task_list:[Task] = []
-    @IBOutlet weak var eventTable: UITableView!
-    let eventArray = ["2020-10-01 hw2","2020-10-14 Exam", "2020-10-28 D-day!"]
-    let cellID = "cellID"
-    
-    @IBOutlet weak var textfield_event_title: UILabel!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var year_label: UILabel!
+    @IBOutlet weak var month_label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calendar.delegate = self
-        calendar.dataSource = self
-        calendar.allowsMultipleSelection = false
-        calendar.swipeToChooseGesture.isEnabled = true
-        calendar.appearance.todayColor = UIColor.black
-        calendar.appearance.todaySelectionColor = UIColor.red
-        calendar.appearance.weekdayTextColor = UIColor.black
-        calendar.appearance.headerTitleColor = UIColor.black
-        calendar.appearance.titleSelectionColor = UIColor.black
-        calendar.appearance.subtitleSelectionColor = UIColor.red
-        formatter.dateFormat = "MM/dd/yy"
+        calendarView.calendarDelegate = self
+        calendarView.calendarDataSource = self
         
-        eventTable.delegate = self
-        eventTable.dataSource = self
+        //To display year and month label when it loaded
+        calendarView.visibleDates { visibleDates in self.setHeaders(from: visibleDates)}
+        calendarView.scrollToDate(Date(), animateScroll: false)
+        
+    }
+    
+    // ------------------ Calendar -----------------
  
+    // JTAppleCalendarViewDelegate
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        configureCell(view: cell, cellState: cellState)
     }
     
-    // -------- Calendar Callback Functions -------------------------------
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        textfield_event_title.text = formatter.string(from: date) + " Events"
-//        print(formatter.string(from: date) + " selected")
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "calCell", for: indexPath) as! DateCell
+        configureCell(view: cell, cellState: cellState)
+        return cell
     }
     
-    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(formatter.string(from: date) + " deselected")
+    // JTAppleCalendarViewDataSource
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        let startCalendar = formatter.date(from: "01/01/2020")!
+        let endCalendar = formatter.date(from: "12/31/2022")!
+        return ConfigurationParameters(startDate: startCalendar, endDate: endCalendar)
     }
     
-    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
-        switch formatter.string(from: date) {
-        case formatter.string(from : Date()):
-            return "Today"
-        case "10/01/20":
-            return "hw2"
-        case "11/03/20":
-            return "Exam"
-        case "11/15/20":
-            return "D-day"
-        default:
-            return nil
+    func setHeaders(from visibleDates: DateSegmentInfo){
+        let date = visibleDates.monthDates.first!.date
+        self.formatter.dateFormat = "yyyy"
+        self.year_label.text = self.formatter.string(from: date)
+        self.formatter.dateFormat = "MMMM"
+        self.month_label.text = self.formatter.string(from: date)
+    }
+    
+    // configure cells 
+    func configureCell(view: JTAppleCell?, cellState: CellState){
+        guard let cell = view as? DateCell  else { return }
+        cell.dayLabel.text = cellState.text
+        
+        // set cell text color
+        self.formatter.dateFormat = "yyyy/MM/dd"
+        let today_str = self.formatter.string(from: today)
+        let currCell_str = self.formatter.string(from: cellState.date)
+        
+        if today_str == currCell_str {
+            //change the today date color to blue
+            cell.dayLabel.textColor = UIColor.blue
+        }else {
+            // if it's not today, selected cell = black, otherwise = white
+            if cellState.isSelected {
+                cell.dayLabel.textColor = UIColor.black
+            }else{
+                cell.dayLabel.textColor = UIColor.white
+            }
         }
-    }
-    // ---------------------------------------------------------------------
-    
-    // -------Event List Table Funcs ---------------------------------------
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // To define how many rows are needed
-        return eventArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // reuns whenever the table view needs to put data in its rows
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
-        if(cell == nil) {
-            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellID)
+        
+        // hide past month, next month
+        if cellState.dateBelongsTo == .thisMonth{
+            cell.isHidden = false
+        }else{
+            cell.isHidden = true
         }
-        cell?.textLabel?.text = eventArray[indexPath.row]
-        return cell!
+        
     }
     
 }
+
+

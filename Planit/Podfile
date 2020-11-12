@@ -7,6 +7,6 @@ target 'Planit' do
 
   # Pods for Planit
 	
-  pod 'FSCalendar'
+  pod 'JTAppleCalendar', '~> 7.1'
 
 end
