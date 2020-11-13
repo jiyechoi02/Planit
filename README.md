@@ -10,9 +10,9 @@
 3. Get data & generate start date --> After finishing the Algorithm
 
 - Calendar Page 
-<del>4. How to send them to the calendar --> need to implement our own calendar?</del>
+4. <del> How to send them to the calendar --> need to implement our own calendar?</del>
 5. Get data from the calendar and display today’s todo
-<del>6. When we select date, show the todo list below</del>
+6. <del> When we select date, show the todo list below</del>
 7. not sure how to display 'bar' on events 
 8. need to figure out how to display task from start date to end date 
 9. still working on the calendar UI ofc!
