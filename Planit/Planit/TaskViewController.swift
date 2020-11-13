@@ -37,6 +37,8 @@ class TaskViewController: UIViewController {
             let workload = Int(workloadSlider.value)
             if db.insertData(title: inputTitle, deadline: selectedDate, workload: workload) == 1 {
                 textfield_title.text = ""
+                datePicker.setDate(Date(), animated: true)
+                workloadSlider.setValue(0.0, animated: true)
             }else {
                 print("ERROR")
             }

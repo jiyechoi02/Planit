@@ -11,5 +11,9 @@ import JTAppleCalendar
 import UIKit
 
 class DateCell: JTAppleCell{
-    @IBOutlet var dayLabel:UILabel!
+    @IBOutlet var dayLabel: UILabel!
+    @IBOutlet var eventbarView: UIView!
+    @IBOutlet var selectView: UIView!
+    @IBOutlet var todayView: UIView!
+    @IBOutlet weak var eventdotView: UIImageView!
 }

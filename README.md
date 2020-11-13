@@ -1,19 +1,35 @@
 # CS491Planit
 
 # Planit App to-do lists
+- Algorithm 
 1. Complete the Algorithm
-2. How to reload after update table view? —> pull down working (refresh)! but reload whole data every time,  how to add only new data to the list, auto-refresh
-3. Get data & generate start date --> After finishing the Algorithm
-4. How to send them to the calendar --> need to implement our own calendar?
-5. Get data from the calendar and display today’s todo
-6. When we select date, show the todo list below
 
+- Main Page 
+2. How to reload after update table view? 
+—> pull down working (refresh)! but reload whole data every time,  fix to add only new data to the list, auto-refresh
+3. Get data & generate start date --> After finishing the Algorithm
+
+- Calendar Page 
+<del>4. How to send them to the calendar --> need to implement our own calendar?</del>
+5. Get data from the calendar and display today’s todo
+<del>6. When we select date, show the todo list below</del>
+7. not sure how to display 'bar' on events 
+8. need to figure out how to display task from start date to end date 
+9. still working on the calendar UI ofc!
+
+
+- Task Page
+7. add buttons (cancel, clear) 
+
+---------------------------------------------------------------------------
 # What I have done so far
 1. Get connected app and database
 2. Load Data from db to the table view Created ‘task class’
 3. Add data / warning for empty
 4. Date Picker data transfer  -> working now!  / date and time to string
 5. LOGO 
+6. Today's task loaded 
+
 
 # BUG !
 Thread 1: signal SIGTERM
@@ -50,7 +66,7 @@ to select how early or late they like to work toward a deadline, and also to war
 new task needs more than the maximum work that can be allocated before the deadline.
 
 
-# Working on the Calendar
+# JTAppleCalendar
 ------------------------------------------------------
 To install JTAppleCalendar 
 change the podfile with 
@@ -66,11 +82,6 @@ end
 then command "pod install"
 ---------------------------------------
 
-What I still need to do 
 
-still working on the calendar UI ofc!
-need to fix changing year, month headers when it's scrolled to other month, year
-does not work selecting dates
-implement loading data from server 
-not sure how to display 'bar' on events 
+
 
