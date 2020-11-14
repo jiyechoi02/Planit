@@ -13,10 +13,12 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     let formatter = DateFormatter()
     let today = Date()
     // UIs
+    
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var todayTaskTableView: UITableView!
     @IBOutlet weak var taskTable: UITableView! // task table view
+
     
     let taskCellId = "cellID" // identifier for each cell
     var task_list:[Task] = [] // to store data from the database
@@ -100,7 +102,18 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
             print("it's empty")
         }
     }
+
     
+    @IBAction func SettingEvent(_ sender: Any) {
+    }
+    
+    @IBAction func AddEvent(_ sender: Any) {
+        performSegue(withIdentifier: "addTaskSegue", sender: self)
+    }
+    
+    @IBAction func EditEvent(_ sender: Any) {
+        
+    }
     /*----------Handling TableView ---------*/
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // To define how many rows are needed

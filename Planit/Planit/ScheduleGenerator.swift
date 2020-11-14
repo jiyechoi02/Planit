@@ -24,6 +24,7 @@ class ScheduleGenerator {
         
         let sorted_tasks = task_list.sorted(by: {$0.deadline < $1.deadline})
         var num_tasks_this_day:[String:Float] = [:]
+        let today_string = formatter.string(from:today)
 
 
         for index in 0..<sorted_tasks.count{
@@ -32,7 +33,7 @@ class ScheduleGenerator {
         
             //  print("\(left.day!+1) and \(sorted_tasks[index].workload)")
             var workload_per_day = Float(sorted_tasks[index].workload)/Float(left.day!+1)
-            var start_date:Date = formatter.date(from:"11/09/20 12:42")!
+            var start_date:Date = formatter.date(from:today_string)!
             var count = 7
             //print("\(workload_per_day)")
             

@@ -78,11 +78,8 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
         }else{
             cell.isHidden = true
         }
-        if (event_dict.contains{ $0.key == formatter.string(from: cellState.date)}){
-            cell.eventdotView.isHidden = false
-        }else{
-            cell.eventdotView.isHidden = true
-        }
+
+        handleEvents(cell: cell, cellState: cellState)
         // configure selection Event
         selectionEvent(cell: cell, cellState: cellState)
 
@@ -115,6 +112,13 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
         eventTableView.reloadData()
     }
     
+    func handleEvents(cell: DateCell, cellState: CellState){
+        if (event_dict.contains{ $0.key == formatter.string(from: cellState.date)}){
+            cell.eventdotView.isHidden = false
+        }else{
+            cell.eventdotView.isHidden = true
+        }
+    }
     // JTAppleCalendarViewDataSource
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
@@ -165,7 +169,6 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
         var event_dict:[String:[Task]] = [:]
         formatter.dateFormat = "MM/dd/YY"
         for task in task_list{
-            print(task.title)
             let str = task.deadline
             if(event_dict.contains{ $0.key == str.split(separator: " ")[0]}){
                 event_dict[String(str.split(separator: " ")[0])]?.append(task)

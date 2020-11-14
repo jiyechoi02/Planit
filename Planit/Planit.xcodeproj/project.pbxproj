@@ -21,6 +21,8 @@
 		872D3D61254FA38100B55533 /* planit.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 872D3D60254FA38100B55533 /* planit.sqlite */; };
 		873EB61925369EE800327BDC /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61825369EE800327BDC /* CalendarViewController.swift */; };
 		873EB61B2536B90900327BDC /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EB61A2536B90900327BDC /* TaskViewController.swift */; };
+		87825AA1255F7FC500557CD6 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87825AA0255F7FC500557CD6 /* TaskCell.swift */; };
+		87825AA3255F89AF00557CD6 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87825AA2255F89AF00557CD6 /* TodayCell.swift */; };
 		B61F01E8A21970B8470F252E /* Pods_Planit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC99677DA06816BED75C167 /* Pods_Planit.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		872D3D60254FA38100B55533 /* planit.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = planit.sqlite; sourceTree = "<group>"; };
 		873EB61825369EE800327BDC /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		873EB61A2536B90900327BDC /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		87825AA0255F7FC500557CD6 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		87825AA2255F89AF00557CD6 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		C7F0C13FE3BEF96B131F4EDE /* Pods-Planit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Planit.debug.xcconfig"; path = "Target Support Files/Pods-Planit/Pods-Planit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +100,8 @@
 				872D3D60254FA38100B55533 /* planit.sqlite */,
 				872D3D5E254F5EE000B55533 /* ScheduleGenerator.swift */,
 				872487F8255C9A1000635206 /* DateCell.swift */,
+				87825AA0255F7FC500557CD6 /* TaskCell.swift */,
+				87825AA2255F89AF00557CD6 /* TodayCell.swift */,
 			);
 			path = Planit;
 			sourceTree = "<group>";
@@ -238,9 +244,11 @@
 				141D5DA3253682E4001BC749 /* ViewController.swift in Sources */,
 				873EB61B2536B90900327BDC /* TaskViewController.swift in Sources */,
 				141D5D9F253682E4001BC749 /* AppDelegate.swift in Sources */,
+				87825AA1255F7FC500557CD6 /* TaskCell.swift in Sources */,
 				872487F9255C9A1000635206 /* DateCell.swift in Sources */,
 				872D3D56254E77BB00B55533 /* Task.swift in Sources */,
 				141D5DA1253682E4001BC749 /* SceneDelegate.swift in Sources */,
+				87825AA3255F89AF00557CD6 /* TodayCell.swift in Sources */,
 				872D3D5F254F5EE000B55533 /* ScheduleGenerator.swift in Sources */,
 				872D3D58254E77EA00B55533 /* DBManager.swift in Sources */,
 			);
