@@ -59,7 +59,7 @@ class TaskViewController: UIViewController {
     
     
     @IBAction func cancelEvent(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwindToMain", sender: self)
     }
     
     

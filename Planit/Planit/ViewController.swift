@@ -10,28 +10,26 @@ import UIKit
 
 /* This is the main view controller */
 class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
+    
     let formatter = DateFormatter()
     let today = Date()
-    // UIs
+    var db:DBManager = DBManager() // connect database
+    let sg:ScheduleGenerator = ScheduleGenerator()
     
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
+    // UIs
     @IBOutlet weak var todayTaskTableView: UITableView!
     @IBOutlet weak var taskTable: UITableView! // task table view
 
     
     let taskCellId = "cellID" // identifier for each cell
     var task_list:[Task] = [] // to store data from the database
-    
-    var db:DBManager = DBManager() // connect database
+    var today_todo_list:[Task] = []
+    let todayCellId = "todayCell"
     
     var dataArr:[String]? = []
     var text_selectedCell:String? = ""
     var sorted_task_list:[Task]=[]
-    let sg:ScheduleGenerator = ScheduleGenerator()
-    
-    var today_todo_list:[Task] = []
-    let todayCellId = "todayCell"
+    var calendar:[String:[Task]] = [:]
     
     // setup
     override func viewDidLoad() {
@@ -45,30 +43,66 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
         todayTaskTableView.delegate = self
         todayTaskTableView.dataSource = self
-        today_todo_list = getTodaysTask(task_list: sorted_task_list)
-        print("todayys list count : \(today_todo_list.count)")
+        todayTaskTableView.register(UITableViewCell.self, forCellReuseIdentifier: todayCellId)
+        calendar = getCalendarTasks(tasks: sorted_task_list) // getting calendar tasks
+        today_todo_list = getTodaysTask(calendar: calendar) // getting today's tasks
 
     }
-    func getTodaysTask(task_list:[Task])-> [Task]{
-        var today_task_list:[Task] = []
-        for task in task_list{
-            formatter.dateFormat = "MM/dd/YY HH:mm"
-           // String(str.split(separator: " ")[0])
+    
+    func getCalendarTasks(tasks:[Task])->[String:[Task]]{
+        /*
+         This function is to get tasks for each date since each task has time interval from a start date to a deadline, on a date between these two dates, the calendar should display the task as the todo list.
+         */
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        
+        var calendar:[String:[Task]] = [:]
+
+        for task in tasks {
             let deadline = String(task.deadline.split(separator: " ")[0])
-            let todayStr = String(formatter.string(from: today).split(separator: " ")[0])
-            if(deadline == todayStr){
-                today_task_list.append(task)
+            let dateString = String(formatter.string(from:task.start_date).split(separator: " ")[0])
+            var date = formatter.date(from: dateString)!
+
+            while(date <= formatter.date(from: deadline)!){
+
+                if(calendar.contains(where: {$0.key == String(formatter.string(from:date).split(separator: " ")[0])})){
+                    var list = calendar[String(formatter.string(from:date).split(separator: " ")[0])]
+                    list?.append(task)
+                    calendar[String(formatter.string(from:date).split(separator: " ")[0])] = list
+                }else{
+                    var list:[Task] = []
+                    list.append(task)
+                    calendar[String(formatter.string(from:date).split(separator: " ")[0])] = list
+                }
+                date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
             }
+        }
+//        for (key,value) in calendar{
+//            for task in value{
+//                print("\(key) and \(task.title)")
+//            }
+//        }
+        return calendar
+    }
+    
+    func getTodaysTask(calendar:[String:[Task]]) -> [Task]{
+        /* this function is to get tasks for current date */
+        var today_task_list:[Task] = []
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        let todayString = String(formatter.string(from: today).split(separator: " ")[0])
+        if(calendar.contains(where: {$0.key == todayString})){
+            today_task_list = calendar[todayString]!
         }
         return today_task_list
     }
-    // to identify the segue named "firstLink" (main - calendar) and follow that segue to open another view.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // to identify the segue named "firstLink" (main - calendar) and follow that segue to open another view.
         performSegue(withIdentifier: "firstLink", sender: self)
     }
     
-    // initialize refresh controller
     func prepareRefresh() {
+        // initialize refresh controller
         let refreshController = UIRefreshControl()
         refreshController.addTarget(self, action: #selector(updateTable(refreshController:)), for: .valueChanged)
         refreshController.attributedTitle = NSAttributedString(string: "refresh")
@@ -79,17 +113,22 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    // when user refreshes the table, it read the DB and reload for update
+ 
     @objc func updateTable(refreshController : UIRefreshControl){
+        // when user refreshes the table, it read the DB and reload for update
         refreshController.endRefreshing()
         task_list = db.readData()
         sorted_task_list = sg.generate(task_list: task_list)
-        today_todo_list = getTodaysTask(task_list: sorted_task_list)
+        calendar = getCalendarTasks(tasks: sorted_task_list)
+        today_todo_list = getTodaysTask(calendar: calendar)
         taskTable.reloadData()
         todayTaskTableView.reloadData()
     }
     
-    @IBAction func deleteDataEvent(_ sender: Any) {
+    @IBAction func SettingEvent(_ sender: Any) {
+    }
+    
+    @IBAction func deleteEvent(_ sender: Any) {
         if let selectedCells = taskTable.indexPathsForSelectedRows{
             for indexPath in selectedCells{
                 let selectedTask = sorted_task_list[indexPath.row]
@@ -102,18 +141,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
             print("it's empty")
         }
     }
-
     
-    @IBAction func SettingEvent(_ sender: Any) {
-    }
-    
-    @IBAction func AddEvent(_ sender: Any) {
-        performSegue(withIdentifier: "addTaskSegue", sender: self)
-    }
-    
-    @IBAction func EditEvent(_ sender: Any) {
-        
-    }
     /*----------Handling TableView ---------*/
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // To define how many rows are needed
@@ -154,10 +182,17 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     /*------------------------------------*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Pass sorted list and events to the calendarview 
         if segue.destination is CalendarViewController {
             let vc = segue.destination as? CalendarViewController
             vc?.task_list = sorted_task_list
+            vc?.event_dict = calendar
         }
     }
+    
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
+        
+    }
+    
 }
 

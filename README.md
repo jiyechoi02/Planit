@@ -1,30 +1,40 @@
 # CS491Planit
 
 # Planit App to-do lists
+
 - Algorithm 
 1. Complete the Algorithm
+2. for now, it ignores dealine 'time' when it calculates left days.
 
 - Main Page 
 2. How to reload after update table view? 
     —> pull down working (refresh)! but reload whole data every time,  fix to add only new data to the list, auto-refresh
-3. Get data & generate start date --> After finishing the Algorithm
-4. Working on the tool bar buttons ( they dont do anything yet so i kept add/delete button just for now by putting them on the weird position rn)
+3. <del> Get data & generate start date --> After finishing the Algorithm</del>
+4. <del>Working on the tool bar buttons ( they dont do anything yet so i kept add/delete button just for now by putting them on the weird position rn)</del>
+5. it generates schedule  everytime the app runs, thus it resets and changes start date based on current date  every time 
+    - solution idea:  1) having a new additional field : written date  
+                             2) saving the generate schedule in database 
 
 - Calendar Page 
-4. <del> How to send them to the calendar --> need to implement our own calendar?</del>
-5. <del>Get data from the calendar and display today’s todo</del>
-6. <del> When we select date, show the todo list below</del>
-7. not sure how to display 'bar' on events 
-8. need to figure out how to display task from start date to end date 
-9. still working on the calendar UI ofc!
-10. Need to allow users to block out dates.
-11. How to handle overloads?
-12. Need to give users options. May want to give users options to select how early or late they like to work toward a deadline
-13. to warn users when a new task needs more than the maximum work that can be allocated before the deadline.
+1. <del> How to send them to the calendar --> need to implement our own calendar?</del>
+2. <del>Get data from the calendar and display today’s todo</del>
+3. <del> When we select date, show the todo list below</del>
+4.   display 'bar' on events 
+5. <del>need to figure out how to display task from start date to end date </del>
+6. Need to allow users to block out dates.
+7. How to handle overloads?
+8. Need to give users options. May want to give users options to select how early or late they like to work toward a deadline
+9. to warn users when a new task needs more than the maximum work that can be allocated before the deadline.
 
 
 - Task Page
-7. <del>add buttons (cancel, clear) </del>
+1. <del>add buttons (cancel, clear) </del>
+
+- Setting Page 
+1. to enable Users set 'workload' values
+
+
+- UI 
 
 ---------------------------------------------------------------------------
 # What I have done so far
@@ -38,8 +48,7 @@
 
 # BUG !
 Thread 1: signal SIGTERM
-
-
+Error : mutiple cells delete
 # Algorithm
 
 Input : tasks with deadline, workload

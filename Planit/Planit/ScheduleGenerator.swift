@@ -70,10 +70,9 @@ class ScheduleGenerator {
 
         print("========after======")
         for task in sorted_tasks{
-            print("\(task.id) start_date : \(formatter.string(from:task.start_date)) deadline : \(task.deadline) workload per day: \(task.amount_of_a_day) " )
+            print("\(task.title) start_date : \(formatter.string(from:task.start_date)) deadline : \(task.deadline) workload per day: \(task.amount_of_a_day) " )
            // print(task)
         }
-
 
         return sorted_tasks
     }

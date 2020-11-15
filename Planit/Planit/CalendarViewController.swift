@@ -39,11 +39,9 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
         //To display year and month label when it loaded
         calendarView.visibleDates { visibleDates in self.setHeaders(from: visibleDates)}
         calendarView.scrollToDate(Date(), animateScroll: false)
-        event_dict = parsingData(task_list: task_list)
     }
     
     // ------------------ Calendar -----------------
-     
     // setting year, month labels
     func setHeaders(from visibleDates: DateSegmentInfo){
         let date = visibleDates.monthDates.first!.date
@@ -78,7 +76,8 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
         }else{
             cell.isHidden = true
         }
-
+        
+        // handle events
         handleEvents(cell: cell, cellState: cellState)
         // configure selection Event
         selectionEvent(cell: cell, cellState: cellState)
@@ -86,7 +85,7 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
     }
     
     func selectionEvent(cell: DateCell, cellState: CellState){
-
+        /* This function is to check if the date is selected, then, change some uis, and also get event list on that date.*/
         if cellState.isSelected {
             cell.dayLabel.textColor = UIColor.black
             cell.selectView.isHidden = false
@@ -113,6 +112,8 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
     }
     
     func handleEvents(cell: DateCell, cellState: CellState){
+        /* this function is to display 'event dot' on dates if they have tasks to do */
+        formatter.dateFormat = "MM/dd/YY"
         if (event_dict.contains{ $0.key == formatter.string(from: cellState.date)}){
             cell.eventdotView.isHidden = false
         }else{
@@ -181,8 +182,7 @@ class CalendarViewController: UIViewController, JTAppleCalendarViewDelegate, JTA
         }
         return event_dict
     }
-    
-    
+
 }
 
 
