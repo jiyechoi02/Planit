@@ -1,75 +1,78 @@
-# CS491Planit
+# Planit
 
 # Planit App to-do lists
 
-- Algorithm 
-1. Complete the Algorithm
-2. for now, it ignores dealine 'time' when it calculates left days.
+Our goal is to create a simple to use algorithmic based planner to help students complete their goals by generating optimal orderings and time allotments for their tasks based on deadlines and workload.
 
-- Main Page 
-2. How to reload after update table view? 
-    —> pull down working (refresh)! but reload whole data every time,  fix to add only new data to the list, auto-refresh
-3. <del> Get data & generate start date --> After finishing the Algorithm</del>
-4. <del>Working on the tool bar buttons ( they dont do anything yet so i kept add/delete button just for now by putting them on the weird position rn)</del>
-5. it generates schedule  everytime the app runs, thus it resets and changes start date based on current date  every time 
-    - solution idea:  1) having a new additional field : written date  
-                             2) saving the generate schedule in database 
+- Stack 
+  - DBManager.swift 
+    -    to create a database with tables to hold user information and the ability to call database anywhere within the app
+  - ScheduleGenerator.swift
+    -  Class that gives us our generate function that given an array of user tasks will return sorted array of the tasks ordered by workload and deadline
+  - JTAppleCalendar 
+    -    Swift Calendar Library to customize the calendar feature 
 
-- Calendar Page 
-1. <del> How to send them to the calendar --> need to implement our own calendar?</del>
-2. <del>Get data from the calendar and display today’s todo</del>
-3. <del> When we select date, show the todo list below</del>
-4.   display 'bar' on events 
-5. <del>need to figure out how to display task from start date to end date </del>
-6. Need to allow users to block out dates.
-7. How to handle overloads?
-8. Need to give users options. May want to give users options to select how early or late they like to work toward a deadline
-9. to warn users when a new task needs more than the maximum work that can be allocated before the deadline.
+# Features 
+    1. Main page 
+        - Today’s Todo list
+        - Total Task list
+        - This sign for task whose the deadline is coming 
+        - title, deadline and also workload hour(s) for today and total 
+        - Setting button
+        - Add button 
+        
+     2. Task Page 
+        -   Add a new task 
+        - Cancel  button
+        - Clear  button 
+        -  Save button
+     3. 
+        - Marking today, selected dates
+        - Stars - Tasks on the dates
+        - Users can see each date’s task by clicking the date 
+        - task list shows the deadline coming sign,title, and work hour(s) on that date
+     4. 
+        - Max work hours per day (default: 5) :
+        - How many max hours (or just think about workload) the user wishes to do tasks.
+        - Min work hours per day (default: 0.5) :
+        - How many min hours (or just think about workload) the user wish to do tasks 
+        - The latest Start date (default: 3) :
+        - This is for the worst cast that a task cannot find a proper start date since every day until the deadline are full with the max   work hours.
+        
+    5. 
+        - View each Task by tapping  a task
+
+        
+# Generating Schedule algorithm 
+1. Input : 
+
+        - Tasks with
+        - deadline  
+        - Workload : User chooses the estimated time needed to complete the task Range [1,10] 
+        - E.g. 311 homework = 10 h
+
+2. Variables : 
+
+       - Min_workload_per_day_for_each_task  :
+       - Minimum workload per day for each task 
+       - Max_total_workload_per_day 
+       - Maximum total workload per day 
+
+3. Algorim :
+
+        1) Sort tasks by their deadlines
+        2) Calculate left days from current date to each deadline 
+        3) Divide its workload by left days = workload_per_day until the deadline 
+        4) If workload_per_day is less than min_workload_per_day
+            - No need to hurry!
+            - increment start date by 1 (e.g. current date ++) until getting min_workload_per_day
+            - Set the task start date 
+        5) Or if on the start date, there are already max_total_workload_per_day, 
+            - Too much work for a day!
+            - Decrement or Increment start date by 1 until we find a date which has less than max_total_workload_per_day
+            - Set the task start date 
 
 
-- Task Page
-1. <del>add buttons (cancel, clear) </del>
-
-- Setting Page 
-1. to enable Users set 'workload' values
-
-
-- UI 
-
----------------------------------------------------------------------------
-# What I have done so far
-1. Get connected app and database
-2. Load Data from db to the table view Created ‘task class’
-3. Add data / warning for empty
-4. Date Picker data transfer  -> working now!  / date and time to string
-5. LOGO 
-6. Today's task loaded 
-
-
-# BUG !
-Thread 1: signal SIGTERM
-Error : mutiple cells delete
-# Algorithm
-
-Input : tasks with deadline, workload
-Variables : min_workload_per_day_for_each_task, max_total_workload_per_day
-
-1. Calculate left days from current date to each deadline
-2. Divide its workload by left days = workload_per_day until the deadline
-3. If workload_per_day is less than a minimum amount of work per day for each work (aka min_workload_per_day)
-    1. No need to hurry!
-    2. increment start date by 1 (e.g. current date ++) until getting min_workload_per_day)
-    3. Set the task start date
-4. Or if on the start date, there are already max_total_workload_per_day,
-    1. Too much work for a day!
-    2. Increment start date by 1 until we find a date which has less than max_total_workload_per_day
-    3. Set the task start date
-
-# What to improve
-1. If the user has days that users does not want to work tasks, how will it affect to the generated plan?
-2. From #4 above, If  the user already has so much work to do, so we cannot find a day having less than max_total_workload_per_day?
-3. What is the reasonable min_workload_per_day_for_each_task & max_total_workload_per_day? (Planning to give users options)
-4. More feedback needed
 
 # Feedback from class
 Planit - Set up database, task table, schedule algorithm. Can add
@@ -80,9 +83,9 @@ to select how early or late they like to work toward a deadline, and also to war
 new task needs more than the maximum work that can be allocated before the deadline.
 
 
-# JTAppleCalendar
-------------------------------------------------------
+# How to install and configure JTAppleCalendar in the program
 To install JTAppleCalendar 
+
 change the podfile with 
 
 
@@ -94,7 +97,7 @@ target 'Planit' do
 end
 
 then command "pod install"
----------------------------------------
+
 
 
 
