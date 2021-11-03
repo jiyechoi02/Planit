@@ -13,6 +13,8 @@ Our goal is to create a simple to use algorithmic based planner to help students
     -    Swift Calendar Library to customize the calendar feature 
 
 # Features 
+![alt text](https://github.com/jiyechoi02/Planit/blob/main/Planit/views/1.png)
+
     1. Main page 
         - Today’s Todo list
         - Total Task list
@@ -21,16 +23,24 @@ Our goal is to create a simple to use algorithmic based planner to help students
         - Setting button
         - Add button 
         
+ ![alt text](https://github.com/jiyechoi02/Planit/blob/main/Planit/views/2.png)
+ 
      2. Task Page 
         -   Add a new task 
         - Cancel  button
         - Clear  button 
         -  Save button
+
+![alt text](https://github.com/jiyechoi02/Planit/blob/main/Planit/views/3.png)
+
      3. 
         - Marking today, selected dates
         - Stars - Tasks on the dates
         - Users can see each date’s task by clicking the date 
         - task list shows the deadline coming sign,title, and work hour(s) on that date
+        
+![alt text](https://github.com/jiyechoi02/Planit/blob/main/Planit/views/4.png)
+
      4. 
         - Max work hours per day (default: 5) :
         - How many max hours (or just think about workload) the user wishes to do tasks.
@@ -39,6 +49,8 @@ Our goal is to create a simple to use algorithmic based planner to help students
         - The latest Start date (default: 3) :
         - This is for the worst cast that a task cannot find a proper start date since every day until the deadline are full with the max   work hours.
         
+![alt text](https://github.com/jiyechoi02/Planit/blob/main/Planit/views/5.png)
+
     5. 
         - View each Task by tapping  a task
 
