@@ -1,5 +1,6 @@
 # Planit
 
+![alt text](https://github.com/jiyechoi02/Planit/blob/main/Planit/views/logo.png)
 # Planit App to-do lists
 
 Our goal is to create a simple to use algorithmic based planner to help students complete their goals by generating optimal orderings and time allotments for their tasks based on deadlines and workload.
